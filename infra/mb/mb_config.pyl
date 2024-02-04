@@ -34,6 +34,7 @@
       'riscv64.debug': 'default_debug_riscv64',
       'riscv64.optdebug': 'default_optdebug_riscv64',
       'riscv64.release': 'default_release_riscv64',
+      'riscv32.release': 'default_release_riscv32',
       'riscv64.debug.sim': 'default_debug_riscv64_sim',
       'riscv64.optdebug.sim': 'default_optdebug_riscv64_sim',
       'riscv64.release.sim': 'default_release_riscv64_sim',
@@ -384,6 +385,8 @@
       'debug', 'riscv64', 'gcc', 'v8_enable_slow_dchecks'],
     'default_release_riscv64': [
       'release', 'riscv64', 'gcc'],
+    'default_release_riscv32': [
+      'release', 'riscv32', 'gcc'],
     'default_debug_riscv64_sim': [
       'debug', 'simulate_riscv64', 'v8_enable_slow_dchecks', 'v8_full_debug'],
     'default_optdebug_riscv64_sim': [
@@ -1149,7 +1152,16 @@
     },
 
     'riscv64': {
-      'gn_args': 'target_cpu="riscv64" use_custom_libcxx=false',
+      # 'gn_args': 'target_cpu="riscv64" use_custom_libcxx=false',
+      'gn_args': 'target_cpu="riscv64" v8_target_cpu="riscv64" v8_enable_pointer_compression=false v8_monolithic=true is_component_build=false '
+      # 'gn_args': 'target_cpu="riscv64" v8_monolithic=true is_component_build=false '
+                 'v8_use_external_startup_data=false use_custom_libcxx=false',
+    },
+
+    'riscv32': {
+      # 'gn_args': 'target_cpu="riscv64" use_custom_libcxx=false',
+      'gn_args': ' target_cpu="riscv32" use_custom_libcxx=false  v8_monolithic=true is_component_build=false '
+                 'v8_use_external_startup_data=false use_custom_libcxx=false',
     },
 
     'x64': {
